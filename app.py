@@ -128,6 +128,35 @@ if st.session_state["current_page"] == "Home":
     0%   {{ opacity: 0; transform: translateY(10px); }}
     100% {{ opacity: 1; transform: translateY(0); }}
 }}
+
+/* =======================================================
+   📱 REGOLE SPECIFICHE PER SMARTPHONE (NON TOCCANO IL PC)
+   ======================================================= */
+@media (max-width: 768px) {{
+    .hero-section {{
+        height: 220px;       /* Riduciamo leggermente l'altezza del banner */
+        padding-left: 20px;  /* Meno spazio vuoto a sinistra */
+    }}
+
+    .hero-title {{
+        top: 20%;            /* Spostiamo il titolo più in alto */
+        left: 10px;
+        margin-left: 0;
+        font-size: 18px;     /* Testo più piccolo per non farlo tagliare */
+        max-width: 90%;      /* Occupa quasi tutta la larghezza */
+    }}
+
+    .plane {{
+        width: 250px;        /* L'aereo diventa proporzionato allo schermo del telefono */
+        top: 50%;            /* Lo abbassiamo per non sovrapporlo al titolo */
+    }}
+
+    /* L'animazione del volo rimane identica, cambiamo solo dove si ferma l'aereo sul telefono */
+    @keyframes fly-across {{
+        0%   {{ left: -250px; }}   /* Parte fuori dallo schermo piccolo */
+        100% {{ left: 15%; }}      /* Si ferma in una posizione centrale e visibile sul telefono */
+    }}
+}}
                 
 </style>
 
