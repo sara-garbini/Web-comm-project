@@ -204,9 +204,9 @@ if st.session_state["current_page"] == "Home":
 # ==========================================
 
 elif st.session_state["current_page"] == "Jobs":
-    # Convert the local image travel.png in Base64 text
+    # Convert the local image abroad.png in Base64 text
     try:
-        with open("travel.png", "rb") as image_file:
+        with open("abroad.png", "rb") as image_file:
             bin_str = base64.b64encode(image_file.read()).decode()
         background_html = f"url('data:image/png;base64,{bin_str}')"
     except Exception:
