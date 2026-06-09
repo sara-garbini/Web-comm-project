@@ -239,36 +239,34 @@ if st.session_state["current_page"] == "Home":
 }}
 
 /* =======================================================
-   📱 REGOLE SPECIFICHE PER SMARTPHONE (NON TOCCANO IL PC)
+   REGOLE SPECIFICHE PER SMARTPHONE (NON TOCCANO IL PC)
    ======================================================= */
 @media (max-width: 768px) {{
     .hero-section {{
-        position: relative;
-        overflow: hidden;
-        height: 250px;
-    }}
-    .hero-title {{
-        position: absolute;
-        top: 60%;
-        left: 5px;
-        width: 90%;
-        margin: 0;
-        font-size: 20px;
-        text-align: center;    /* ← mancava il punto e virgola! */
-        line-height: 1.3;
+        height: 220px !important;
+        padding-left: 0 !important;
     }}
     .plane {{
-        position: absolute;
-        width: 160px;
-        top: 15%;
-        height: auto;
+        width: 180px !important;
+        top: 10% !important;
+        left: 0 !important;
+    }}
+    .hero-title {{
+        font-size: 16px !important;
+        top: 55% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        margin-left: 0 !important;
+        max-width: 90% !important;
+        text-align: center !important;
+        opacity: 1 !important;
+        animation: fade-in-text 1.5s ease-out 2s forwards !important;
     }}
 }}
-
-/* I @keyframes vanno FUORI dal @media query in Streamlit */
+                
 @keyframes fly-across {{
-    0%   {{ left: -160px; }}
-    100% {{ left: 20%; }}
+    0%   {{ left: -180px; }}
+    100% {{ left: 15%; }}
 }}
                 
 </style>
