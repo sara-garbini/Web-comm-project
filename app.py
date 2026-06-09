@@ -247,15 +247,14 @@ if st.session_state["current_page"] == "Home":
         padding-left: 0 !important;
     }}
     .plane {{
-        width: 180px !important;
-        top: 10% !important;
-        left: 0 !important;
+        width: 250px !important;
+        top: 45% !important;
         animation: fly-across-mobile 2s ease-out forwards !important;
     }}
     .hero-title {{
-        font-size: 16px !important;
-        top: 55% !important;
-        left: 50% !important;
+        font-size: 22px !important;
+        top: 10% !important;
+        left: 40% !important;
         transform: translateX(-50%) !important;
         margin-left: 0 !important;
         max-width: 90% !important;
@@ -265,7 +264,7 @@ if st.session_state["current_page"] == "Home":
     }}
 }}
 @keyframes fly-across-mobile {{
-    0%   {{ left: -180px; }}
+    0%   {{ left: -250px; }}
     100% {{ left: 15%; }}
 }}
                 
