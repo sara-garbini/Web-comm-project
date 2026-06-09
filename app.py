@@ -245,33 +245,30 @@ if st.session_state["current_page"] == "Home":
     .hero-section {{
         position: relative;
         overflow: hidden;
-        height: 250px;       /* Riduciamo leggermente l'altezza del banner */
-
+        height: 250px;
     }}
-
     .hero-title {{
         position: absolute;
-        top: 60%;            /* Spostiamo il titolo più in alto */
+        top: 60%;
         left: 5px;
         width: 90%;
         margin: 0;
-        font-size: 20px;     /* Testo più piccolo per non farlo tagliare */
-        text-align: center
-        line-height: 1.3;     /* Aumentiamo l'interlinea per migliorare la leggibilità */
+        font-size: 20px;
+        text-align: center;    /* ← mancava il punto e virgola! */
+        line-height: 1.3;
     }}
-
     .plane {{
         position: absolute;
-        width: 160px;        /* L'aereo diventa proporzionato allo schermo del telefono */
-        top: 15%;            /* Lo abbassiamo per non sovrapporlo al titolo */
+        width: 160px;
+        top: 15%;
         height: auto;
     }}
+}}
 
-    /* L'animazione del volo rimane identica, cambiamo solo dove si ferma l'aereo sul telefono */
-    @keyframes fly-across {{
-        0%   {{ left: -160px; }}   /* Parte fuori dallo schermo piccolo */
-        100% {{ left: 20%; }}      /* Si ferma in una posizione centrale e visibile sul telefono */
-    }}
+/* I @keyframes vanno FUORI dal @media query in Streamlit */
+@keyframes fly-across {{
+    0%   {{ left: -160px; }}
+    100% {{ left: 20%; }}
 }}
                 
 </style>
