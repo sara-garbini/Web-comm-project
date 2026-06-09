@@ -250,6 +250,7 @@ if st.session_state["current_page"] == "Home":
         width: 180px !important;
         top: 10% !important;
         left: 0 !important;
+        animation: fly-across-mobile 2s ease-out forwards !important;
     }}
     .hero-title {{
         font-size: 16px !important;
@@ -262,11 +263,6 @@ if st.session_state["current_page"] == "Home":
         opacity: 1 !important;
         animation: fade-in-text 1.5s ease-out 2s forwards !important;
     }}
-}}
-                
-@keyframes fly-across {{
-    0%   {{ left: -180px; }}
-    100% {{ left: 15%; }}
 }}
                 
 </style>
