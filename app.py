@@ -10,7 +10,7 @@ st.markdown ("""
 <style>
 
 /* =======================================================
-   🎨 1. SFONDO E CONFIGURAZIONE LAYOUT
+    BACKGROUND AND LAYOUT
    ======================================================= */
 .stApp {
     background: linear-gradient(125deg, #0b0f19 0%, #1e1b4b 50%, #020617 100%) !important;
@@ -24,7 +24,7 @@ st.markdown ("""
 }
 
 /* =======================================================
-   ✍️ 2. LEGGIBILITÀ TESTI (FORZATURA BIANCO FISSO)
+   READABILITY ENHANCEMENT: TEXT COLORS AND PLACEHOLDERS
    ======================================================= */
 .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6, 
 .stApp p, .stApp label, .stApp .stMarkdown, .stApp [data-testid="stExpander"] span,
@@ -33,15 +33,15 @@ st.markdown ("""
     -webkit-font-smoothing: antialiased;
 }
 
-/* Sistema i testi segnaposto sbiaditi di default ("Choose options" e "All") */
+/* Adjust the placeholder text ("Choose options" e "All") */
 .stApp div[data-placeholder="true"], .stApp span[data-readonly="true"] {
     color: rgba(255, 255, 255, 0.7) !important;
 }
 
 /* =======================================================
-   💼 3. PULSANTI PERSONALIZZATI (STILE SCURO COERENTE)
+   PERSONALIZATION OF INTERACTIVE ELEMENTS (BUTTONS, LINK_BUTTON)
    ======================================================= */
-/* Gestione pulsanti standard, pulsanti modulo e link_button */
+/* Main button styles */
 div.stButton > button, div[data-testid="stFormSubmitButton"] > button,
 [data-testid="stLinkButton"] a, [data-testid="stLinkButton"] span, div.stButton a {
     background-color: #1e1b4b !important; 
@@ -61,10 +61,10 @@ div.stButton > button:hover, div[data-testid="stFormSubmitButton"] > button:hove
 }
 
 /* =======================================================
-   🔍 4. BLINDATURA INPUT (SELECTBOX, MULTISELECT, TEXTINPUT)
+   (SELECTBOX, MULTISELECT, TEXTINPUT)
    ======================================================= */
              
-/* Imposta lo sfondo scuro su qualsiasi casella di input o menu a tendina dell'app */
+/* Dark backgound */
 .stSelectbox div[data-baseweb="select"], .stMultiSelect div[data-baseweb="select"],
 div[data-testid="stTextInput"] [data-baseweb="base-input"], div[data-testid="stTextInput"] > div > div,
 .stSelectbox [role="button"], .stMultiSelect [role="button"], div[data-testid="stSelectbox"] > div {
@@ -73,21 +73,21 @@ div[data-testid="stTextInput"] [data-baseweb="base-input"], div[data-testid="stT
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-/* Evita che i contenitori intermedi nativi generino strati bianchi */
+/* Avoid that Streamlit generates white layers */
 .stSelectbox div, .stMultiSelect div {
     background-color: transparent !important;
 }
 
-/* Forza qualsiasi testo interno ai moduli di input a rimanere bianco puro */
+/* Force text color */
 .stSelectbox div[data-baseweb="select"] *, .stMultiSelect div[data-baseweb="select"] *,
 div[data-testid="stTextInput"] input, div[data-testid="stSelectbox"] span {
     color: #ffffff !important;
 }
 
 /* =======================================================
-   🗂️ 5. COMPONENTI INTERNI COMPLESSI (TENDINE APERTE E TAG)
+   DROPDOWN OPTIONS AND POPOVERS
    ======================================================= */
-/* Gestione delle liste opzioni quando si clicca e si espande una tendina */
+/* Management of dropdown options */
 div[data-baseweb="popover"] ul, div[data-baseweb="popover"] li, 
 div[data-baseweb="menu"] div, [data-testid="stSelectbox"] ul li {
     background-color: #262730 !important;
@@ -98,12 +98,12 @@ div[data-baseweb="popover"] li:hover, [data-testid="stSelectbox"] ul li:hover {
     background-color: #1e1b4b !important;
 }
 
-/* Forza i testi figli dentro i popover espansi */
+/* Force text color to white for all child elements within expanded popover menu items */
 div[data-baseweb="popover"] li * {
     color: #ffffff !important;
 }
 
-/* Tag/Fiches delle opzioni selezionate nel multiselect delle competenze e interessi */
+/* Style the selected option tags/badges inside the skills and interests multiselect widget */
 div[data-testid="stMultiSelect"] [data-baseweb="tag"] {
     background-color: #1e1b4b !important;
     color: #ffffff !important;
@@ -111,7 +111,7 @@ div[data-testid="stMultiSelect"] [data-baseweb="tag"] {
 }
 
 /* =======================================================
-   📧 6. STRUTTURA CONTENITORE FORM NEWSLETTER
+   STRUCTURE OF THE NEWSLETTER FORM CONTAINER
    ======================================================= */
 div[data-testid="stForm"] {
     background-color: rgba(30, 41, 59, 0.2) !important;
@@ -125,7 +125,7 @@ div[data-testid="stForm"] {
 """, unsafe_allow_html=True)
 
 # --- DATA LOADING (FROM MANUAL CSV ONLY) ---
-@st.cache_data(ttl=5)
+@st.cache_data
 def load_opportunities():
     try:
         df = pd.read_csv("jobs.csv")
@@ -243,27 +243,34 @@ if st.session_state["current_page"] == "Home":
    ======================================================= */
 @media (max-width: 768px) {{
     .hero-section {{
-        height: 220px;       /* Riduciamo leggermente l'altezza del banner */
-        padding-left: 20px;  /* Meno spazio vuoto a sinistra */
+        position: relative;
+        overflow: hidden;
+        height: 250px;       /* Riduciamo leggermente l'altezza del banner */
+
     }}
 
     .hero-title {{
-        top: 20%;            /* Spostiamo il titolo più in alto */
-        left: 10px;
-        margin-left: 0;
-        font-size: 18px;     /* Testo più piccolo per non farlo tagliare */
-        max-width: 90%;      /* Occupa quasi tutta la larghezza */
+        position: absolute;
+        top: 60%;            /* Spostiamo il titolo più in alto */
+        left: 5px;
+        width: 90%;
+        margin: 0;
+        font-size: 20px;     /* Testo più piccolo per non farlo tagliare */
+        text-align: center
+        line-height: 1.3;     /* Aumentiamo l'interlinea per migliorare la leggibilità */
     }}
 
     .plane {{
-        width: 250px;        /* L'aereo diventa proporzionato allo schermo del telefono */
-        top: 50%;            /* Lo abbassiamo per non sovrapporlo al titolo */
+        position: absolute;
+        width: 160px;        /* L'aereo diventa proporzionato allo schermo del telefono */
+        top: 15%;            /* Lo abbassiamo per non sovrapporlo al titolo */
+        height: auto;
     }}
 
     /* L'animazione del volo rimane identica, cambiamo solo dove si ferma l'aereo sul telefono */
     @keyframes fly-across {{
-        0%   {{ left: -250px; }}   /* Parte fuori dallo schermo piccolo */
-        100% {{ left: 15%; }}      /* Si ferma in una posizione centrale e visibile sul telefono */
+        0%   {{ left: -160px; }}   /* Parte fuori dallo schermo piccolo */
+        100% {{ left: 20%; }}      /* Si ferma in una posizione centrale e visibile sul telefono */
     }}
 }}
                 
@@ -428,6 +435,7 @@ elif st.session_state["current_page"] == "Jobs":
                         st.session_state["quiz_skills_applied"] = user_skills
                         st.session_state["show_quiz"] = False
                         st.rerun()
+
     with col_main_content:
         st.markdown("## 💼 Available Opportunities")
         # Place your existing classic dropdown filters (col1, col2, col3) right here
