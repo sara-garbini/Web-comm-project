@@ -6,13 +6,122 @@ import base64
 st.set_page_config(page_title="Digital Comm Career Hub", page_icon="🚀", layout="wide")
 
 st.markdown ("""
+             
 <style>
+
+/* =======================================================
+   🎨 1. SFONDO E CONFIGURAZIONE LAYOUT
+   ======================================================= */
 .stApp {
     background: linear-gradient(125deg, #0b0f19 0%, #1e1b4b 50%, #020617 100%) !important;
     background-attachment: fixed !important;
 }
 
+[data-testid="stAppViewBlockContainer"] {
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+    max-width: 100% !important;
+}
+
+/* =======================================================
+   ✍️ 2. LEGGIBILITÀ TESTI (FORZATURA BIANCO FISSO)
+   ======================================================= */
+.stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6, 
+.stApp p, .stApp label, .stApp .stMarkdown, .stApp [data-testid="stExpander"] span,
+[data-testid="stWidgetLabel"] p, [data-testid="stWidgetLabel"] span {
+    color: #ffffff !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Sistema i testi segnaposto sbiaditi di default ("Choose options" e "All") */
+.stApp div[data-placeholder="true"], .stApp span[data-readonly="true"] {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* =======================================================
+   💼 3. PULSANTI PERSONALIZZATI (STILE SCURO COERENTE)
+   ======================================================= */
+/* Gestione pulsanti standard, pulsanti modulo e link_button */
+div.stButton > button, div[data-testid="stFormSubmitButton"] > button,
+[data-testid="stLinkButton"] a, [data-testid="stLinkButton"] span, div.stButton a {
+    background-color: #1e1b4b !important; 
+    color: #ffffff !important;             
+    border: 1px solid #312e81 !important;  
+    text-decoration: none !important;      
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+div.stButton > button:hover, div[data-testid="stFormSubmitButton"] > button:hover,
+[data-testid="stLinkButton"] a:hover, div.stButton > button:active {
+    background-color: #0b0f19 !important; 
+    border-color: #312e81 !important;  
+}
+
+/* =======================================================
+   🔍 4. BLINDATURA INPUT (SELECTBOX, MULTISELECT, TEXTINPUT)
+   ======================================================= */
+             
+/* Imposta lo sfondo scuro su qualsiasi casella di input o menu a tendina dell'app */
+.stSelectbox div[data-baseweb="select"], .stMultiSelect div[data-baseweb="select"],
+div[data-testid="stTextInput"] [data-baseweb="base-input"], div[data-testid="stTextInput"] > div > div,
+.stSelectbox [role="button"], .stMultiSelect [role="button"], div[data-testid="stSelectbox"] > div {
+    background-color: #262730 !important;
+    background: #262730 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Evita che i contenitori intermedi nativi generino strati bianchi */
+.stSelectbox div, .stMultiSelect div {
+    background-color: transparent !important;
+}
+
+/* Forza qualsiasi testo interno ai moduli di input a rimanere bianco puro */
+.stSelectbox div[data-baseweb="select"] *, .stMultiSelect div[data-baseweb="select"] *,
+div[data-testid="stTextInput"] input, div[data-testid="stSelectbox"] span {
+    color: #ffffff !important;
+}
+
+/* =======================================================
+   🗂️ 5. COMPONENTI INTERNI COMPLESSI (TENDINE APERTE E TAG)
+   ======================================================= */
+/* Gestione delle liste opzioni quando si clicca e si espande una tendina */
+div[data-baseweb="popover"] ul, div[data-baseweb="popover"] li, 
+div[data-baseweb="menu"] div, [data-testid="stSelectbox"] ul li {
+    background-color: #262730 !important;
+    color: #ffffff !important;
+}
+
+div[data-baseweb="popover"] li:hover, [data-testid="stSelectbox"] ul li:hover {
+    background-color: #1e1b4b !important;
+}
+
+/* Forza i testi figli dentro i popover espansi */
+div[data-baseweb="popover"] li * {
+    color: #ffffff !important;
+}
+
+/* Tag/Fiches delle opzioni selezionate nel multiselect delle competenze e interessi */
+div[data-testid="stMultiSelect"] [data-baseweb="tag"] {
+    background-color: #1e1b4b !important;
+    color: #ffffff !important;
+    border: 1px solid #312e81 !important;
+}
+
+/* =======================================================
+   📧 6. STRUTTURA CONTENITORE FORM NEWSLETTER
+   ======================================================= */
+div[data-testid="stForm"] {
+    background-color: rgba(30, 41, 59, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 20px !important;
+    border-radius: 12px !important;
+}
+
 </style>
+             
 """, unsafe_allow_html=True)
 
 # --- DATA LOADING (FROM MANUAL CSV ONLY) ---
@@ -245,36 +354,12 @@ elif st.session_state["current_page"] == "Jobs":
 
     st.markdown(
         f"""
-        <style>
-        [data-testid="stMainView"], .stApp {{
-            background-color: #0f172a !important; 
-            background-image: none !important;
-        }}
-        
-        /* Give 4rem of space at the top of the main container: this saves the buttons and the banner */
-        .block-container {{
-            max-width: 100% !important;
-            padding-left: 0rem !important;
-            padding-right: 0rem !important;
-            padding-top: 4rem !important; /* <--- Increased to push everything down and avoid cutting */
-        }}
-        
-        [data-testid="stSidebarCollapse"] {{
-            display: none !important;
-        }}
-        
-        .stSelectbox, .stWrite, div[data-testid="stVerticalBlock"] > div:not(:first-child) {{
-            padding-left: 30px !important;
-            padding-right: 30px !important;
-        }}
-        </style>
-        
         <div style="
             background-image: linear-gradient(rgba(2, 6, 23, 0.55), rgba(2, 6, 23, 0.85)), {background_html};
             background-size: cover;
             background-position: center;
             padding: 100px 40px;
-            margin-top: 30px; /* <--- Distanza di sicurezza dalla riga dei pulsanti */
+            margin-top: 30px;
             margin-bottom: 40px;
             width: 100%;
             box-sizing: border-box;
@@ -282,7 +367,7 @@ elif st.session_state["current_page"] == "Jobs":
         ">
             <h1 style='margin: 0; color: #ffffff; font-size: 48px; font-weight: 700; font-family: "Helvetica Neue", sans-serif;'>🇪🇺 International Job Board</h1>
         </div>
-        """, 
+        """,    
         unsafe_allow_html=True
     )
 
@@ -292,12 +377,6 @@ elif st.session_state["current_page"] == "Jobs":
 # ==========================================
 # Splitting the page layout: 70% for main content/filters, 30% for the top-right assistant widget
     col_main_content, col_right_widget = st.columns([7, 3])
-
-    # --- LEFT SIDE: MAIN BOARD CONTENT ---
-    with col_main_content:
-        st.markdown("## 💼 Available Opportunities")
-        # Place your existing classic dropdown filters (col1, col2, col3) right here
-        # so they render on the wider left section of the screen.
 
     # --- RIGHT SIDE: VIRTUAL ASSISTANT WIDGET ---
     with col_right_widget:
@@ -349,6 +428,10 @@ elif st.session_state["current_page"] == "Jobs":
                         st.session_state["quiz_skills_applied"] = user_skills
                         st.session_state["show_quiz"] = False
                         st.rerun()
+    with col_main_content:
+        st.markdown("## 💼 Available Opportunities")
+        # Place your existing classic dropdown filters (col1, col2, col3) right here
+        # so they render on the wider left section of the screen.
     # Initialize the filtered dataframe copy
     df_filtered = df_postings.copy()
     # (Insert your standard dropdown filtering logic for Roles and Locations here)
@@ -361,13 +444,13 @@ elif st.session_state["current_page"] == "Jobs":
         col1, col2, col3 = st.columns(3)
         with col1:
             available_categories = ["All"] + list(df_postings["Title"].unique())
-            selected_category = st.selectbox("Filter by Field:", available_categories)
+            selected_category = st.selectbox("Filter by Field:", available_categories, key="selectbox_field_filter")
         with col2:
             available_locations = ["All"] + list(df_postings["Location"].unique())
-            selected_location = st.selectbox("Filter by Location:", available_locations)
+            selected_location = st.selectbox("Filter by Location:", available_locations, key="selectbox_location_filter")
         with col3:
             available_types = ["All"] + list(df_postings["Type"].unique())
-            selected_type = st.selectbox("Filter by Contract Type:", available_types)
+            selected_type = st.selectbox("Filter by Contract Type:", available_types, key="selectbox_type_filter")
             
         df_filtered = df_postings.copy()
         if selected_category != "All":
@@ -401,7 +484,7 @@ elif st.session_state["current_page"] == "Jobs":
         with st.container():
             st.markdown(
                 f"""
-                <div style="background-color: rgba(30, 41, 59, 0.4); padding:25px; border-radius:12px; border-left: 6px solid #00e5ff; margin-bottom:5px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+                <div style="background-color: #1e293b; padding:25px; border-radius:12px; border-left: 6px solid #00e5ff; margin-bottom:5px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
                     <h4 style='margin-top:0; color:#ffffff; font-size:20px; margin-bottom:8px;'>{row['Role']}</h4>
                     <p style='margin:0; font-size:15px; color:#cbd5e1;'><b>Company:</b> {row['Company']} | <b>Location:</b> {row['Location']}</p>
                     <p style='margin:12px 0 0 0;'>
