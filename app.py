@@ -12,11 +12,16 @@ st.markdown ("""
 /* =======================================================
     BACKGROUND AND LAYOUT
    ======================================================= */
+             
+ /* Applies a 125-degree linear gradient transitioning from deep midnight blue to dark indigo */            
 .stApp {
     background: linear-gradient(125deg, #0b0f19 0%, #1e1b4b 50%, #020617 100%) !important;
+             
+/* Fixes the background in place to prevent it from scrolling with the page content */
     background-attachment: fixed !important;
 }
 
+/* Removes default Streamlit padding and force the layout to span across 100% of the viewport width */
 [data-testid="stAppViewBlockContainer"] {
     padding-left: 0rem !important;
     padding-right: 0rem !important;
@@ -26,14 +31,18 @@ st.markdown ("""
 /* =======================================================
    READABILITY ENHANCEMENT: TEXT COLORS AND PLACEHOLDERS
    ======================================================= */
+/* Targets all headers, paragraphs, labels, markdown blocks, and expander titles */
+             
 .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6, 
 .stApp p, .stApp label, .stApp .stMarkdown, .stApp [data-testid="stExpander"] span,
 [data-testid="stWidgetLabel"] p, [data-testid="stWidgetLabel"] span {
     color: #ffffff !important;
+             
+/* Makes white text sharper and easier to read on dark backgrounds, especially on Safari/iPhone */
     -webkit-font-smoothing: antialiased;
 }
 
-/* Adjust the placeholder text ("Choose options" e "All") */
+/* Adjust the placeholder text ("Choosen options" e "All") */
 .stApp div[data-placeholder="true"], .stApp span[data-readonly="true"] {
     color: rgba(255, 255, 255, 0.7) !important;
 }
