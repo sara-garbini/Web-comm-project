@@ -39,7 +39,7 @@ st.markdown ("""
 }
 
 /* =======================================================
-   PERSONALIZATION OF INTERACTIVE ELEMENTS (BUTTONS, LINK_BUTTON)
+   CUSTOMIZATION OF INTERACTIVE ELEMENTS (BUTTONS, LINK_BUTTON)
    ======================================================= */
 /* Main button styles */
 div.stButton > button, div[data-testid="stFormSubmitButton"] > button,
@@ -177,7 +177,7 @@ if st.session_state["current_page"] == "Home":
     st.markdown(f"""
 <style>
 
-/* Centra e pulisce i margini del layout wide di Streamlit */
+/* Center and clean the layout borders */
 [data-testid="stAppViewBlockContainer"] {{
     padding-left: 0rem !important;
     padding-right: 0rem !important;
@@ -215,11 +215,11 @@ if st.session_state["current_page"] == "Home":
 .hero-title {{
     position: absolute;
     top: 30%;
-    transform: translateY(-50%); /* Centra perfettamente in verticale */
-    left: 60px; /* Distanza fissa dal bordo sinistro del banner */
+    transform: translateY(-50%); /* Center vertically */
+    left: 60px; /* Fixed distance from the left edge of the banner */
     z-index: 2;
     margin: 0;
-    /* Allinea il testo all'inizio dei contenuti sotto usando le percentuali della finestra */
+    /* Align the text at the beginning of the content below using percentages of the window */
     margin-left: 10vw;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 28px;
@@ -239,7 +239,7 @@ if st.session_state["current_page"] == "Home":
 }}
 
 /* =======================================================
-   REGOLE SPECIFICHE PER SMARTPHONE (NON TOCCANO IL PC)
+   STYLE ADJUSTMENTS FOR MOBILE DEVICES (RESPONSIVE DESIGN)
    ======================================================= */
 @media (max-width: 768px) {{
     .hero-section {{
@@ -292,25 +292,25 @@ if st.session_state["current_page"] == "Home":
     </div>
     """, unsafe_allow_html=True)
     
-    # Un piccolo spazio vuoto per respirare
+    # A little space before the interactive section
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # === SEZIONE INTERATTIVA: MINI-SIMULAZIONE ===
+    # === SIMULATION SECTION ===
     with st.container():
         st.markdown("### Where can your skills take you?")
         st.write("Select one or more of your core skills below to see how our matching system works in real-time:")
         
-        # Il selettore nativo di Streamlit
+        # Streanlit multi-select component with a custom label and options relevant to the digital communication field
         test_skills = st.multiselect(
             label="Choose your skills:",
-            options=["Python", "SQL", "Social Media Strategy", "Content Creation", "SEO & Copywriting", "Data Visualization"],
+            options=["Python", "SQL", "Social Media Management", "Content Creation", "SEO & Copywriting", "Data Visualization"],
             key="about_skills_simulator",
-            label_visibility="collapsed" # Nasconde la scritta standard di Streamlit per usare il nostro st.write sopra
+            label_visibility="collapsed" # Hide the standard Streamlit label to use our custom st.write above
         )
         
-        # Cosa succede quando l'utente seleziona le competenze
+        # When the user selects skills, we show a custom-styled feedback message that simulates the matching process and encourages them to explore the Jobs page
         if test_skills:
-            # Crea la stringa con le competenze in grassetto
+            # Create the string with the skills in bold
             skills_str = ", ".join([f"**{skill}**" for skill in test_skills])
             
             st.markdown(f"""
@@ -334,7 +334,7 @@ if st.session_state["current_page"] == "Home":
             </div>
             """, unsafe_allow_html=True)
             
-            # Bottone per cambiare pagina al volo
+            # Button to take the user to the Jobs page
             if st.button("Take me to the Jobs Page!", use_container_width=True):
                 st.session_state["current_page"] = "Jobs"
                 st.rerun()
@@ -377,7 +377,8 @@ elif st.session_state["current_page"] == "Jobs":
 # ==========================================
 # LAYOUT STRUCTURE: MAIN CONTENT vs RIGHT WIDGET
 # ==========================================
-# Splitting the page layout: 70% for main content/filters, 30% for the top-right assistant widget
+
+    # Splitting the page layout: 70% for main content/filters, 30% for the top-right assistant widget
     col_main_content, col_right_widget = st.columns([7, 3])
 
     # --- RIGHT SIDE: VIRTUAL ASSISTANT WIDGET ---
@@ -386,24 +387,24 @@ elif st.session_state["current_page"] == "Jobs":
         if "show_quiz" not in st.session_state:
             st.session_state["show_quiz"] = False
 
-        # HTML injection for the compact widget card header styling
+        # HTML injection for the widget card header styling 
         st.markdown(
             """
             <div style="background-color: rgba(0, 229, 255, 0.05); padding: 15px; border-radius: 10px; border: 1px solid rgba(0, 229, 255, 0.1); margin-bottom: 10px;">
-                <p style='margin:0; font-size:14px; color:#cbd5e1; font-weight:600;'>🤖 Your AI Assistant</p>
+                <p style='margin:0; font-size:14px; color:#cbd5e1; font-weight:600;'>Not sure yet about the best role for you? </p>
                 <p style='margin:5px 0 0 0; font-size:12px; color:#94a3b8;'>Let the assistant find jobs that match your skills.</p>
             </div>
             """, unsafe_allow_html=True
         )
         
-        # Compact action button positioned inside the right column
-        if st.button("✨ Not sure yet about the best role for you? Click here to find the best job according to your skills!", use_container_width=True):
+        # Action button positioned inside the right column
+        if st.button("🤖 Your AI Assistant", use_container_width=True):
             st.session_state["show_quiz"] = not st.session_state["show_quiz"]
 
         # Render quiz fields if the user toggled the assistant section open
         if st.session_state["show_quiz"]:
             with st.container():
-                st.markdown("<p style='color:#00e5ff; font-weight:600; margin-top:10px; margin-bottom:5px;'>🎯 Select your Skills:</p>", unsafe_allow_html=True)
+                st.markdown("<p style='color:#00e5ff; font-weight:600; margin-top:10px; margin-bottom:5px;'> Select your Skills, please :</p>", unsafe_allow_html=True)
                 
                 # --- SKILLS EXTRACTION FROM CSV ---
                 # 1. Drop any empty rows in the Skills column and convert to string
@@ -585,7 +586,7 @@ elif st.session_state["current_page"] == "More Information":
         )
         submit_button = st.form_submit_button(label="Subscribe to Newsletter", use_container_width=True)
 
-    # === CODICE FORM DENTRO MORE INFORMATION ===
+    # === Newsletter Subscription Logic ===
     if submit_button:
         # .strip() rimuove spazi vuoti invisibili che ingannano il controllo
         if not user_email.strip() or "@" not in user_email:
@@ -593,22 +594,22 @@ elif st.session_state["current_page"] == "More Information":
         else:
             try:
                 with open("subscribers.csv", "a", encoding="utf-8") as f:
-                    # Rimuoviamo eventuali virgole dai nomi per non rompere il file CSV
+                    # Data cleaning: if the name is empty or just spaces, we save it as "Anonymous". We also strip spaces from the email and interests.
                     clean_name = user_name.strip() if user_name.strip() else "Anonymous"
                     clean_email = user_email.strip()
                     selected_interests = ";".join(interest) if interest else "None"
                     
                     f.write(f"{clean_name},{clean_email},{selected_interests}\n")
                 
-                # Salviamo il successo nello stato della sessione
+                # Save the subscription status in session state to show a personalized success message after form submission
                 st.session_state["newsletter_subscribed"] = True
                 st.session_state["subscriber_name"] = clean_name
             except Exception:
                 st.error("Error saving data.")
 
-    # Mostra il messaggio di successo SOLO se l'azione è stata appena completata con successo
+    # It show a personalized success message if the user just subscribed
     if "newsletter_subscribed" in st.session_state and st.session_state["newsletter_subscribed"]:
         st.success(f"Thank you {st.session_state['subscriber_name']}! You have successfully subscribed.")
         
-        # Facoltativo: resetta lo stato subito dopo così al prossimo click di pagina sparisce
+        # Reset the subscription status after showing the message to avoid showing it again on page refresh or navigation
         st.session_state["newsletter_subscribed"] = False
