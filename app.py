@@ -264,6 +264,11 @@ if st.session_state["current_page"] == "Home":
         animation: fade-in-text 1.5s ease-out 2s forwards !important;
     }}
 }}
+@keyframes fly-across-mobile {{
+    0%   {{ left: -180px; }}
+    100% {{ left: 15%; }}
+}}
+                
                 
 </style>
 
