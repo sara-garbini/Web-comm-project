@@ -2,6 +2,8 @@
 
 Welcome to the **Digital Comm Career Hub**, an interactive web platform designed to bridge the gap between academic paths in Digital Communication and the global professional job market. 
 
+**Live Hub:** [Explore the Live Application](https://web-comm-projectgit-3susr2nyp8semhqdonxv5k.streamlit.app/)
+
 The application is built entirely in **Python** and leverages the **Streamlit** framework to deliver a dynamic, responsive user experience tailored for both desktop and mobile devices.
 
 ---
