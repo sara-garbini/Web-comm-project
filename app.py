@@ -292,7 +292,7 @@ if st.session_state["current_page"] == "Home":
         <p>Welcome to your first step for an international career in Digital Communication. 
         This platform was built to bridge the gap between academic studies and global professional growth. We know that sometimes navigating the job market,
                 building the right cv and finding useful information can be overwhelming. 
-                For this reason, this website try to make it easier for you by providing jobs and most important information all in one place.</p>
+                For this reason, this website tries to make it easier for you by providing jobs and most important information all in one place.</p>
         <ul>
             <li><strong>Skill-Based Job Matching:</strong> Input your core competencies to instantly uncover the roles most aligned with your profile.</li>
             <li><strong>Curated Global Opportunities:</strong> Discover verified job listings and international internships tailored to the modern communication market.</li>
@@ -447,7 +447,8 @@ elif st.session_state["current_page"] == "Jobs":
         # so they render on the wider left section of the screen.
     # Initialize the filtered dataframe copy
     df_filtered = df_postings.copy()
-    # (Insert your standard dropdown filtering logic for Roles and Locations here)
+
+    # Standard dropdown filtering logic for Roles and Locations
 
                 
     # --- FILTERS AND JOB POSTS ---
